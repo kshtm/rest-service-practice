@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingController {
 
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name, @PathVariable int id) {
+    @RequestMapping("/")
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
         return new Greeting("Hello, " + name);
     }
 
