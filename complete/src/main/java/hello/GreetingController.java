@@ -1,22 +1,23 @@
 package hello;
 
-import java.util.concurrent.atomic.AtomicLong;
-
-import org.springframework.web.bind.annotation.PathVariable;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class GreetingController {
 
+    @Autowired
+    ApplicationContext context;
+
     @RequestMapping("/")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        log.info("Hello controller");
         return new Greeting("Hello, " + name);
     }
 
-//    @RequestMapping("/greeting/{id}")
-//    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name, @PathVariable int id) {
-//        return new Greeting(id, "Hello, " + name);
-//    }
 }
