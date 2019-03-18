@@ -1,24 +1,25 @@
 package app.service.impl;
 
-import app.configuration.AspectAnnotation;
 import app.dao.GreetingDao;
 import app.model.Greeting;
 import app.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class GreetingServiceImpl implements GreetingService {
 
-    public int value = 0;
+    private static final String topicName = "MyTopic";
+
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     GreetingDao greetingDao;
 
     @Autowired
-    public GreetingServiceImpl(GreetingDao greetingDao) {
+    public GreetingServiceImpl(GreetingDao greetingDao, KafkaTemplate<String, String> kafkaTemplate) {
         this.greetingDao = greetingDao;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
 //    @Lookup
@@ -26,9 +27,13 @@ public class GreetingServiceImpl implements GreetingService {
 //        return new ProtoService();
 //    }
 
+    public void sendMessage(String msg) {
+        kafkaTemplate.send(topicName, msg);
+    }
+
     @Override
     public Greeting save(String content) {
-//        getProtoService().printInt();
+        sendMessage("Saving " + content);
         return greetingDao.save(new Greeting(content));
     }
 
