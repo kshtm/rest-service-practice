@@ -28,7 +28,7 @@ public class GreetingServiceImpl implements GreetingService {
 //    }
 
     public void sendMessage(String msg) {
-        kafkaTemplate.send(topicName, msg);
+        kafkaTemplate.send(topicName, "Saving", msg);
     }
 
     @Override
