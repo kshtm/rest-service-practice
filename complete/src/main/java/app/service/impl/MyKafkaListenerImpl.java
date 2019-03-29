@@ -8,6 +8,6 @@ public class MyKafkaListenerImpl {
 
     @KafkaListener(topics = "MyTopic", groupId = "1")
     public void listen(String message) {
-        System.err.println("Received Messasge in group 1: " + message);
+        System.err.println("Received Message in group 1: " + message);
     }
 }
