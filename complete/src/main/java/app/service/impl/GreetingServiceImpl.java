@@ -4,6 +4,7 @@ import app.dao.GreetingDao;
 import app.model.Greeting;
 import app.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.annotation.Primary;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,10 @@ public class GreetingServiceImpl implements GreetingService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-//    @Lookup
-//    public ProtoService getProtoService() {
-//        return new ProtoService();
-//    }
+    @Lookup
+    public ProtoService getProtoService() {
+        return null;
+    }
 
     public void sendMessage(String msg) {
         kafkaTemplate.send(topicName, "Saving", msg);
@@ -35,6 +36,7 @@ public class GreetingServiceImpl implements GreetingService {
 
     @Override
     public Greeting save(String content) {
+        System.err.println("Hello from Look up " + getProtoService().field);
         sendMessage("Saving " + content);
         return greetingDao.save(new Greeting(content));
     }

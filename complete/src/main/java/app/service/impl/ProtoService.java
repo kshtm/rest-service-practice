@@ -9,16 +9,10 @@ import java.util.Random;
 
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE
-//        , proxyMode = ScopedProxyMode.TARGET_CLASS
+////        , proxyMode = ScopedProxyMode.TARGET_CLASS
 )
 public class ProtoService {
 
     int field = new Random().nextInt(100);
-    public void printInt() {
-        System.err.println(field);
-        System.err.println(field);
-        System.err.println(field);
-        System.err.println(field);
-        System.err.println(field);
-    }
+
 }
