@@ -9,7 +9,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 
 @Component
-public class MyBFPP implements BeanPostProcessor {
+public class MyBPP implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {

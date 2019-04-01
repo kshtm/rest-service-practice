@@ -4,10 +4,12 @@ import app.dao.GreetingDao;
 import app.model.Greeting;
 import app.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
+@Primary
 public class GreetingServiceImpl implements GreetingService {
 
     private static final String topicName = "MyTopic";
