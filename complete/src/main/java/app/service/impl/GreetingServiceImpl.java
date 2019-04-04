@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Primary
 public class GreetingServiceImpl implements GreetingService {
@@ -39,6 +41,16 @@ public class GreetingServiceImpl implements GreetingService {
         System.err.println("Hello from Look up " + getProtoService().field);
         sendMessage("Saving " + content);
         return greetingDao.save(new Greeting(content));
+    }
+
+    @Override
+    public Greeting findById(long id) {
+        return greetingDao.getOne(id);
+    }
+
+    @Override
+    public List<Greeting> findAll() {
+        return greetingDao.findAll();
     }
 
 }

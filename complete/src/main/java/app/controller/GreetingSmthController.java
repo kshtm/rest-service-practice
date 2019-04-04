@@ -8,7 +8,7 @@
 //public class GreetingSmthController {
 //
 //    @RequestMapping("/smth")
-//    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+//    public Greeting postGreeting(@RequestParam(value="name", defaultValue="World") String name) {
 //        return new Greeting("Smth, " + name);
 //    }
 //}

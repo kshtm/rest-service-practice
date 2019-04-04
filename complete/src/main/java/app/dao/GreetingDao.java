@@ -1,9 +1,8 @@
 package app.dao;
 
 import app.model.Greeting;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GreetingDao extends PagingAndSortingRepository<Greeting, Long> {
+public interface GreetingDao extends JpaRepository<Greeting, Long> {
 
 }

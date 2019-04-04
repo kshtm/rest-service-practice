@@ -1,6 +1,7 @@
 package app.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.ToString;
 
@@ -15,9 +16,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "greeting")
-public class Greeting implements Serializable {
-
-    private static final long serialVersionUID = 963691056343970477L;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Greeting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
