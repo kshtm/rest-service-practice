@@ -7,14 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,11 +35,15 @@ public class GreetingController {
         return greetingService.findById(id);
     }
 
+    @GetMapping(value = "/test")
+    public String getTest() {
+        return "Test";
+    }
+
     @GetMapping("/greetings")
     public List<Greeting> getGreetings() {
         return greetingService.findAll();
     }
-
 
 
 }
