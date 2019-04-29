@@ -11,14 +11,14 @@ import org.springframework.core.env.ConfigurablePropertyResolver;
 @Configuration
 public class Configurer {
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(ConfigurableEnvironment environment) {
-        PropertySourcesPlaceholderConfigurer res = new MyPropertySourcesPlaceholderConfigurer();
-        res.setEnvironment(environment);
-        res.setPropertySources(environment.getPropertySources());
+  @Bean
+  public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(ConfigurableEnvironment environment) {
+    PropertySourcesPlaceholderConfigurer res = new MyPropertySourcesPlaceholderConfigurer();
+    res.setEnvironment(environment);
+    res.setPropertySources(environment.getPropertySources());
 
-        return res;
-    }
+    return res;
+  }
 
 
 }

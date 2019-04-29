@@ -5,15 +5,15 @@ import org.springframework.core.env.Environment;
 
 public class AppPropertySourcesPlaceholderConfigurer extends PropertySourcesPlaceholderConfigurer {
 
-    private Environment environment;
+  private Environment environment;
 
-    public AppPropertySourcesPlaceholderConfigurer environment(Environment environment) {
-        this.environment = environment;
-        return this;
-    }
+  public AppPropertySourcesPlaceholderConfigurer environment(Environment environment) {
+    this.environment = environment;
+    return this;
+  }
 
-    @Override
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
-    }
+  @Override
+  public void setEnvironment(Environment environment) {
+    this.environment = environment;
+  }
 }

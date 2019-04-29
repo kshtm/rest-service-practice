@@ -15,42 +15,42 @@ import java.util.List;
 @Primary
 public class GreetingServiceImpl implements GreetingService {
 
-    private static final String topicName = "MyTopic";
+  private static final String topicName = "MyTopic";
 
-    private KafkaTemplate<String, String> kafkaTemplate;
+  private KafkaTemplate<String, String> kafkaTemplate;
 
-    GreetingDao greetingDao;
+  GreetingDao greetingDao;
 
-    @Autowired
-    public GreetingServiceImpl(GreetingDao greetingDao, KafkaTemplate<String, String> kafkaTemplate) {
-        this.greetingDao = greetingDao;
-        this.kafkaTemplate = kafkaTemplate;
-    }
+  @Autowired
+  public GreetingServiceImpl(GreetingDao greetingDao, KafkaTemplate<String, String> kafkaTemplate) {
+    this.greetingDao = greetingDao;
+    this.kafkaTemplate = kafkaTemplate;
+  }
 
-    @Lookup
-    public ProtoService getProtoService() {
-        return null;
-    }
+  @Lookup
+  public ProtoService getProtoService() {
+    return null;
+  }
 
-    public void sendMessage(String msg) {
-        kafkaTemplate.send(topicName, "Saving", msg);
-    }
+  public void sendMessage(String msg) {
+    kafkaTemplate.send(topicName, "Saving", msg);
+  }
 
-    @Override
-    public Greeting save(String content) {
-        System.err.println("Hello from Look up " + getProtoService().field);
-        sendMessage("Saving " + content);
-        return greetingDao.save(new Greeting(content));
-    }
+  @Override
+  public Greeting save(String content) {
+    System.err.println("Hello from Look up " + getProtoService().field);
+    sendMessage("Saving " + content);
+    return greetingDao.save(new Greeting(content));
+  }
 
-    @Override
-    public Greeting findById(long id) {
-        return greetingDao.getOne(id);
-    }
+  @Override
+  public Greeting findById(long id) {
+    return greetingDao.getOne(id);
+  }
 
-    @Override
-    public List<Greeting> findAll() {
-        return greetingDao.findAll();
-    }
+  @Override
+  public List<Greeting> findAll() {
+    return greetingDao.findAll();
+  }
 
 }

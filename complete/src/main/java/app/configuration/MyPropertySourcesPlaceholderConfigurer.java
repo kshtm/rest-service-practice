@@ -10,17 +10,17 @@ import org.springframework.core.env.Environment;
 
 public class MyPropertySourcesPlaceholderConfigurer extends PropertySourcesPlaceholderConfigurer {
 
-    private Environment environment;
+  private Environment environment;
 
-    @Override
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
-    }
+  @Override
+  public void setEnvironment(Environment environment) {
+    this.environment = environment;
+  }
 
-    @Override
-    protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess,
-                                     ConfigurablePropertyResolver propertyResolver) throws BeansException {
-        super.processProperties(beanFactoryToProcess,
-                (ConfigurablePropertyResolver) new AppPropertySourcesPropertyResolver(((ConfigurableEnvironment) environment).getPropertySources()));
-    }
+  @Override
+  protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess,
+                                   ConfigurablePropertyResolver propertyResolver) throws BeansException {
+    super.processProperties(beanFactoryToProcess,
+        (ConfigurablePropertyResolver) new AppPropertySourcesPropertyResolver(((ConfigurableEnvironment) environment).getPropertySources()));
+  }
 }

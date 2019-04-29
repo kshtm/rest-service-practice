@@ -2,7 +2,6 @@ package app.service.impl;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -13,6 +12,6 @@ import java.util.Random;
 )
 public class ProtoService {
 
-    int field = new Random().nextInt(100);
+  int field = new Random().nextInt(100);
 
 }
