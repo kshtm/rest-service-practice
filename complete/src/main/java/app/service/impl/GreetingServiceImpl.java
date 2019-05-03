@@ -15,31 +15,16 @@ import java.util.List;
 @Primary
 public class GreetingServiceImpl implements GreetingService {
 
-  private static final String topicName = "MyTopic";
-
-  private KafkaTemplate<String, String> kafkaTemplate;
 
   GreetingDao greetingDao;
 
   @Autowired
-  public GreetingServiceImpl(GreetingDao greetingDao, KafkaTemplate<String, String> kafkaTemplate) {
+  public GreetingServiceImpl(GreetingDao greetingDao) {
     this.greetingDao = greetingDao;
-    this.kafkaTemplate = kafkaTemplate;
-  }
-
-  @Lookup
-  public ProtoService getProtoService() {
-    return null;
-  }
-
-  public void sendMessage(String msg) {
-    kafkaTemplate.send(topicName, "Saving", msg);
   }
 
   @Override
-  public Greeting save(String content) {
-    System.err.println("Hello from Look up " + getProtoService().field);
-    sendMessage("Saving " + content);
+  public Greeting save(String content) { ;
     return greetingDao.save(new Greeting(content));
   }
 
