@@ -3,13 +3,13 @@ package app.service.impl;
 import app.dao.GreetingDao;
 import app.model.Greeting;
 import app.service.GreetingService;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.annotation.Primary;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @Primary
@@ -51,6 +51,12 @@ public class GreetingServiceImpl implements GreetingService {
   @Override
   public List<Greeting> findAll() {
     return greetingDao.findAll();
+  }
+
+  @Override
+  public Greeting findByContent(String name) {
+    Optional<Greeting> byName = greetingDao.findByContent(name);
+    return byName.get();
   }
 
 }

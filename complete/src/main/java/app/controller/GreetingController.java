@@ -26,15 +26,10 @@ public class GreetingController {
   @Autowired
   GreetingService greetingService;
 
-  @AspectAnnotation
-  @PostMapping("/")
-  public Greeting postGreeting(@RequestParam(value = "greeting", defaultValue = "World") String greeting) {
-    return greetingService.save(greeting);
-  }
 
-  @GetMapping(value = "/greeting/{id}")
-  public Greeting getGreeting(@PathVariable long id) {
-    return greetingService.findById(id);
+  @PostMapping("/")
+  public Greeting doSmth(@RequestParam(value = "greeting", defaultValue = "World") String greeting) {
+    return greetingService.save(greeting);
   }
 
   @GetMapping(value = "/test")
@@ -45,6 +40,11 @@ public class GreetingController {
   @GetMapping("/greetings")
   public List<Greeting> getGreetings() {
     return greetingService.findAll();
+  }
+
+  @GetMapping("/name/")
+  public Greeting getGreetingByName(@RequestParam(value = "name") String content) {
+    return greetingService.findByContent(content);
   }
 
 

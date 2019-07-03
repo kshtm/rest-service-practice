@@ -1,7 +1,6 @@
 package app.service;
 
 import app.model.Greeting;
-
 import java.util.List;
 
 public interface GreetingService {
@@ -11,4 +10,6 @@ public interface GreetingService {
   public Greeting findById(long id);
 
   public List<Greeting> findAll();
+
+  public Greeting findByContent(String content);
 }
