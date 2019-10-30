@@ -32,15 +32,15 @@ public class GreetingServiceImpl implements GreetingService {
     return null;
   }
 
-  public void sendMessage(String msg) {
-    kafkaTemplate.send(topicName, "Saving", msg);
-  }
-
   @Override
   public Greeting save(String content) {
-    System.err.println("Hello from Look up " + getProtoService().field);
+//    System.err.println("Hello from Look up " + getProtoService().field);
     sendMessage("Saving " + content);
     return greetingDao.save(new Greeting(content));
+  }
+
+  public void sendMessage(String msg) {
+    kafkaTemplate.send(topicName, "Saving", msg);
   }
 
   @Override
