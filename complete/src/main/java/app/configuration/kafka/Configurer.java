@@ -1,5 +1,6 @@
-package app.configuration;
+package app.configuration.kafka;
 
+import app.configuration.MyPropertySourcesPlaceholderConfigurer;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

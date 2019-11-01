@@ -67,7 +67,7 @@ class GreetingServiceImplTest {
         System.err.println("Before deleting: " + strings);
 
 
-        adminClient.deleteTopics(strings);
+//        adminClient.deleteTopics(strings);
 
         List<TopicPartition> topicsForReset = new ArrayList<>();
 
@@ -80,20 +80,34 @@ class GreetingServiceImplTest {
                 topicsForReset.add(new TopicPartition(topicName, i));
             }
         }
+
+
+
         consumer.seekToEnd(topicsForReset);
 
 //        Producer producer = new KafkaProducer(configProperties);
 //        producer.partitionsFor("test")
 
+//        ListTopicsResult listTopicsResult = kafkaAdminClient.listTopics();
+//        KafkaFuture<Set<String>> names = listTopicsResult.names();
+    }
+
+    @Test
+    void resetTopic() throws ExecutionException, InterruptedException {
+        greetingService.save("Test content");
+
+        ListTopicsResult listTopicsResult = adminClient.listTopics();
+        KafkaFuture<Set<String>> names = listTopicsResult.names();
+        Set<String> strings = names.get();
+        System.err.println("Before deleting: " + strings);
+
+        adminClient.deleteTopics(strings);
+
         ListTopicsResult listTopicsResult2 = adminClient.listTopics();
         KafkaFuture<Set<String>> names2 = listTopicsResult2.names();
         Set<String> strings2 = names2.get();
-
         System.err.println("After deleting: " + strings2);
 
-
-//        ListTopicsResult listTopicsResult = kafkaAdminClient.listTopics();
-//        KafkaFuture<Set<String>> names = listTopicsResult.names();
     }
 
 //    private void resetOffset(TopicPartition partition) {
